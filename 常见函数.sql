@@ -12,6 +12,47 @@
 1. 单行函数
 如concat、length、ifnull等
 2. 分组函数
+
+常见函数：
+	字符函数：
+	length
+	concat
+	substr
+	instr
+	trim
+	upper
+	lower
+	lpad
+	rpad
+	replace
+	
+	数学函数：
+	round
+	ceil
+	floor
+	truncate
+	mod
+	
+	日期函数：
+	now
+	curdate
+	curtime
+	year
+	month
+	monthname
+	date
+	hour minute
+	str_to_date
+	date_format
+	
+	其他函数
+	version
+	database
+	user
+	
+	控制函数
+	if
+	case
 */
 
 USE myemployees;
@@ -114,17 +155,111 @@ SELECT HOUR(NOW()) 小时;
 
 SELECT MIN(NOW()) 分;
 
-#str_to_date 将字符通过指定的格式转换成日期
+#str_to_date 将字符通过指定的格式转换成默认日期格式
 SELECT STR_TO_DATE('1998-3-2', '%Y-%c-%d') AS output;
+SELECT STR_TO_DATE('3-2 1998', '%c-%d %Y') AS output;
 
 #查询入职时间为1992-4-3的员工信息
 SELECT * FROM employees WHERE hiredate = STR_TO_DATE('4-3 1992', '%c-%d %Y');
 
-#date_format 将日期转换成字符
+#date_format 将日期转换成字符（指定格式）
 SELECT DATE_FORMAT(NOW(), '%y年%m月%d日') AS output;
 
 #查询有奖金的员工名和入职日期(xx月xx日xx年)
 SELECT last_name, DATE_FORMAT(hiredate, '%m月/%d日 %y年') 入职日期
 FROM employees
 WHERE commission_pct IS NOT NULL;
+
+#其他函数
+SELECT VERSION();
+SELECT DATABASE();
+SELECT USER();
+
+#五、流程控制函数
+#1. if函数： if else的效果
+SELECT IF(10>5, '大', '小');
+
+SELECT last_name, commission_pct, IF(commission_pct IS NULL, '没奖金', '有奖金') 备注
+FROM employees;
+
+#2. case函数的使用一：switch case的效果
+/*
+switch(变量或表达式){
+	case 常量1:语句1；break；
+	default:语句n; break;
+}
+
+mysql中
+case 要判断的字段或表达式
+when 常量1 then 要显示的值1或语句1;	如果是值不能加分号
+when 常量2 then 要显示的值2或语句1;
+...
+else要显示的值n或语句n
+end
+
+
+*/
+
+/*
+案例：查询员工的工资，要求
+
+部门号 = 30，显示的工资为1.1倍
+部门号 = 40，显示的工资为1.2倍
+部门号 = 50，显示的工资为1.3倍
+其他部门，显示的工资为原工资
+*/
+
+SELECT 
+	salary 原始工资, 
+	department_id,
+	CASE department_id
+	WHEN 30 THEN salary*1.1
+	WHEN 40 THEN salary*1.2
+	WHEN 50 THEN salary*1.3
+	ELSE salary
+	END AS 新工资
+FROM employees;
+
+#3. case函数的使用二：多重if
+/*
+java中多重if：
+if(条件1) {
+	语句1;
+} else if(条件2) {
+	语句2;
+}
+else {
+	语句n;
+}
+
+mysql中：
+case
+when 条件1 then 要显示的值1或 语句1；如果是值不能加分号
+when 条件2 then 要显示的值2或 语句2；
+。。。
+else 要显示的值n
+END
+*/
+
+/*
+案例：查询员工的工资情况
+如果工资>20000，显示A级别
+如果工资>15000，显示B级别
+如果工资>10000，显示C级别
+否则, 显示D级别
+*/
+
+SELECT salary,
+CASE
+WHEN salary > 20000 THEN 'A'
+WHEN salary > 15000 THEN 'B'
+WHEN salary > 10000 THEN 'C'
+ELSE 'D'
+END AS 工资级别
+FROM employees;
+
+
+
+
+
 
