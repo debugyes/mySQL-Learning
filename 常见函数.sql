@@ -237,7 +237,7 @@ case
 when 条件1 then 要显示的值1或 语句1；如果是值不能加分号
 when 条件2 then 要显示的值2或 语句2；
 。。。
-else 要显示的值n
+else 要显示的值n或语句n
 END
 */
 

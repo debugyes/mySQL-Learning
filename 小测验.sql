@@ -10,6 +10,10 @@ job		grade
 AD PRES		A
 ST_ MAN		B
 IT_ PROG	C
+
+产生下面结果
+Last_name    Job_id	Grade
+king         AD_PRES      A
 */
 
 USE myemployees
@@ -32,4 +36,15 @@ SELECT CONCAT(last_name, ' earns ', salary, ' monthly but wants ',salary * 3) AS
 FROM employees;
 
 #5.
-
+SELECT 
+	last_name AS Last_name,
+	job_id AS Job_id,
+	CASE
+	WHEN job_id = 'AD_PRES' THEN 'A'
+	WHEN job_id = 'ST_MAN' THEN 'B'
+	WHEN job_id = 'IT_PROG' THEN 'C'
+	WHEN job_id = 'SA_REP' THEN 'D'
+	WHEN job_id = 'ST_CLERK' THEN 'E'
+	END AS Grade
+FROM employees
+WHERE job_id = 'AD_PRES';
