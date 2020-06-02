@@ -65,14 +65,14 @@ SHOW VARIABLES LIKE "%char%"
 #2. concat 拼接字符串
 SELECT CONCAT(last_name, '_', first_name) 姓名 FROM employees;
 
-#3. upper、lower
+#3. upper、lower 转换大小写
 SELECT UPPER('John');
 SELECT LOWER('JOHN');
 
 #实例：将姓大写，名小节，然后拼接
 SELECT CONCAT(UPPER(last_name), ' ', LOWER(first_name)) 姓名 FROM employees;
 
-#4. substr/substring 
+#4. substr/substring 截取字符串
 #注意：索引从1开始
 SELECT SUBSTR('加藤惠', 3) output;#截取从指定索引处后面所有字符
 SELECT SUBSTR('加藤惠', 1, 3) output;#截取从指定索引处指定字符长度的字符
@@ -81,8 +81,7 @@ SELECT SUBSTR('加藤惠', 1, 3) output;#截取从指定索引处指定字符长
 SELECT CONCAT(UPPER(SUBSTR(last_name, 1, 1)), '_', LOWER(SUBSTR(last_name, 2))) output 
 FROM employees;
 
-#5. instr 返回字串第一次出现的索引，如果找不到返回0
-
+#5. instr 返回字串第一次出现的索引，如果找不到返回
 SELECT INSTR('加藤惠和安艺伦也', '加藤惠') AS out_put;
 
 #6. trim 去除前后空格

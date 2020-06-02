@@ -33,7 +33,7 @@ SELECT last_name, salary, email FROM employees;
 	`hiredate`
 from employees;
 */
-#`是着重号，用于区分是字段还是关键字
+#"`"是着重号，用于区分是字段还是关键字
 
 SELECT * FROM employees;
 
