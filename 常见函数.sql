@@ -161,7 +161,7 @@ SELECT STR_TO_DATE('3-2 1998', '%c-%d %Y') AS output;
 #查询入职时间为1992-4-3的员工信息
 SELECT * FROM employees WHERE hiredate = STR_TO_DATE('4-3 1992', '%c-%d %Y');
 
-#date_format 将日期转换成字符（指定格式）
+#date_format 将合法的日期转换成字符（指定格式）
 SELECT DATE_FORMAT(NOW(), '%y年%m月%d日') AS output;
 
 #查询有奖金的员工名和入职日期(xx月xx日xx年)
@@ -184,8 +184,12 @@ FROM employees;
 #2. case函数的使用一：switch case的效果
 /*
 switch(变量或表达式){
-	case 常量1:语句1；break；
-	default:语句n; break;
+	case 常量1:
+		语句1；
+		break；
+	default:
+		语句n; 
+		break;
 }
 
 mysql中
