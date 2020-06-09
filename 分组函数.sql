@@ -20,6 +20,8 @@ count计算非空值个数
 
 4. count函数的单独介绍
    一般使用count(*)用作统计行数
+   
+5. 和分组函数一同查询的字段要求是group by后的字段
 */
 USE myemployees;
 
@@ -87,4 +89,5 @@ SELECT COUNT(1) FROM employees; #count中加任意常量值皆可，相当于在
 MYISAM 搜索引擎下，count(*)的效率高
 INNODB 搜索引擎下，count(*)和count(1)的效果差不多，比count(字段)要高一些(因为有个判断的过程)
 
-
+#6、和分组函数一同查询的字段有限制
+SELECT AVG(salary), employee_id FROM employees; #不规则的表格，两个字段长短不一
