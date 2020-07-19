@@ -1,7 +1,7 @@
 #进阶5 分组查询
 /*
   语法：
-	select 分组函数,列(要求出现在group by后面)
+	select 分组函数,列表(要求出现在group by后面)
 	from 表
 	【where 筛选条件】
 	group by 分组的列表
